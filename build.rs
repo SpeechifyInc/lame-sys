@@ -9,6 +9,8 @@ use anyhow::ensure;
 use flate2::bufread::GzDecoder;
 use tar::Archive;
 
+// todo: [don't use canonicalize](https://kornel.ski/rust-sys-crate)
+
 fn version() -> anyhow::Result<String> {
     let major = env::var("CARGO_PKG_VERSION_MAJOR")?;
     let minor = env::var("CARGO_PKG_VERSION_MINOR")?;

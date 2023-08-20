@@ -3,6 +3,7 @@ name = "lame-sys"
 version = "3.100.0"
 edition = "2021"
 authors = ["Andrew Gazelka <andrew.gazelka@gmail.com>"]
+links = "mp3lame"
 
 [dependencies]
 
