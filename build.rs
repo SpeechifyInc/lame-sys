@@ -59,14 +59,14 @@ fn clone_to(install_dir: &Path) -> anyhow::Result<()> {
     Ok(())
 }
 
-fn apply_patches(lame_dir: &Path) -> anyhow::Result<()>{
+fn apply_patches(lame_dir: &Path) -> anyhow::Result<()> {
     #[cfg(target_os = "macos")]
     apply_patches_macos(lame_dir)?;
 
     Ok(())
 }
 
-fn apply_patches_macos(lame_dir: &Path) -> anyhow::Result<()>{
+fn apply_patches_macos(lame_dir: &Path) -> anyhow::Result<()> {
     // Fix undefined symbol error _lame_init_old
     // https://sourceforge.net/p/lame/mailman/message/36081038/
 
@@ -96,6 +96,19 @@ fn install(lame_dir: &Path, prefix: &str) -> anyhow::Result<()> {
         .status()?;
 
     ensure!(status.success(), "configure failed");
+
+    // Execute the make command
+    let status = Command::new("make").current_dir(lame_dir).status()?;
+
+    ensure!(status.success(), "make failed");
+
+    // Install the library
+    let status = Command::new("make")
+        .current_dir(lame_dir)
+        .arg("install")
+        .status()?;
+
+    ensure!(status.success(), "make failed");
 
     Ok(())
 }
@@ -134,8 +147,10 @@ fn init() -> anyhow::Result<()> {
 
     install(&lame_dir, prefix)?;
 
+    let lib_dir = prefix_dir.join("lib");
+
     // add to path
-    println!("cargo:rustc-link-search=native={prefix}");
+    println!("cargo:rustc-link-search=native={}", lib_dir.display());
 
     // static link
     println!("cargo:rustc-link-lib=static=mp3lame");
