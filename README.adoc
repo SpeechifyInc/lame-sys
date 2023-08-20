@@ -1,0 +1,9 @@
+:commit-hash: b2d096f
+
+= lame-sys
+
+This library provides linkings to the mp3lame library.
+
+
+
+
