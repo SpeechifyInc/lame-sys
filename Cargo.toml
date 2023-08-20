@@ -1,0 +1,15 @@
+[package]
+name = "lame-sys"
+version = "3.100.0"
+edition = "2021"
+authors = ["Andrew Gazelka <andrew.gazelka@gmail.com>"]
+
+[dependencies]
+
+[build-dependencies]
+flate2 = "1.0.27"
+tar = "0.4.40"
+anyhow = { version = "1.0.75", features = ["backtrace"]}
+dirs = "5.0.1"
+project-root = "0.2.2"
+reqwest = { version = "0.11.18", features = ["blocking"] }
