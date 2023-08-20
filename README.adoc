@@ -4,6 +4,15 @@
 
 This library provides linkings to the mp3lame library.
 
+== Use with ffmpeg
+
+https://github.com/FFmpeg/FFmpeg/blob/master/configure#L6757
+https://github.com/FFmpeg/FFmpeg/blob/master/configure#L1618-L1624
+https://github.com/FFmpeg/FFmpeg/blob/master/configure#L1452-L1461
+https://github.com/FFmpeg/FFmpeg/blob/master/configure#L1375-L1395
+
+
+
 
 
 

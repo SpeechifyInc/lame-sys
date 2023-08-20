@@ -148,12 +148,14 @@ fn init() -> anyhow::Result<()> {
     install(&lame_dir, prefix)?;
 
     let lib_dir = prefix_dir.join("lib");
+    let include_dir = prefix_dir.join("include");
 
     // add to path
     println!("cargo:rustc-link-search=native={}", lib_dir.display());
 
     // static link
     println!("cargo:rustc-link-lib=static=mp3lame");
+    println!("cargo:include={}", include_dir.display());
 
     Ok(())
 }
